@@ -1,8 +1,9 @@
-const functions = require('firebase-functions');
+const functions = require('firebase-functions')
+const express = require('express')
+const expressApp = require('./express/app')
 
-// // Create and Deploy Your First Cloud Functions
+// // Create and Deploy Your Cloud Functions
 // // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+
+// Create "api" function to host all other top-level endpoints from Express
+exports.api = functions.https.onRequest(expressApp)

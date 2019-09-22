@@ -9,6 +9,7 @@
   },
   "hosting": {
     "public": "frontend/public",
-    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"]
+    "ignore": ["firebase.json", "**/.*", "**/node_modules/**"],
+    "rewrites": [{ "source": "api{,/**}", "function": "api" }]
   }
 }
