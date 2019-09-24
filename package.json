@@ -1,19 +1,15 @@
 {
-  "name": "@codinghub/clubhub",
+  "name": "clubhub",
   "description": "A central website for all clubs and organizations on campus.",
   "authors": "Coding Hub",
   "private": true,
-  "version": "1.0.0",
   "workspaces": [
-    "./backend",
-    "./frontend",
-    "./models",
-    "./utils"
+    "packages/*"
   ],
   "scripts": {
     "deploy": "firebase deploy",
     "backend:deploy": "cd backend && yarn run deploy",
-    "backend:dev": "cd backend && yarn run express",
-    "frontend:dev": "cd frontend && yarn run start"
+    "backend": "cd packages/backend && yarn run express",
+    "frontend": "cd packages/frontend && yarn run start"
   }
 }

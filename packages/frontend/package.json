@@ -1,10 +1,12 @@
 {
-  "name": "clubhub-frontend",
+  "name": "@clubhub/frontend",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
     "react": "^16.9.0",
     "react-dom": "^16.9.0",
+    "react-if": "^3.4.3",
+    "react-router-dom": "^5.0.1",
     "react-scripts": "3.1.2"
   },
   "scripts": {
