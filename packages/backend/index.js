@@ -1,5 +1,4 @@
 const functions = require('firebase-functions')
-const express = require('express')
 const expressApp = require('./express/app')
 
 // // Create and Deploy Your Cloud Functions

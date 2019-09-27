@@ -4,11 +4,13 @@
   "authors": "Coding Hub",
   "private": true,
   "workspaces": [
-    "packages/*"
+    "packages/*",
+    "packages/backend/common",
+    "packages/frontend/src/components"
   ],
   "scripts": {
     "deploy": "firebase deploy",
-    "backend:deploy": "cd backend && yarn run deploy",
+    "deploy:backend": "cd packages/backend && yarn run deploy",
     "backend": "cd packages/backend && yarn run express",
     "frontend": "cd packages/frontend && yarn run start"
   }
