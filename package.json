@@ -9,9 +9,10 @@
     "packages/frontend/src/components"
   ],
   "scripts": {
-    "deploy": "firebase deploy",
-    "deploy:backend": "cd packages/backend && yarn run deploy",
-    "backend": "cd packages/backend && yarn run express",
-    "frontend": "cd packages/frontend && yarn run start"
+    "build:frontend": "cd packages/frontend && yarn build",
+    "deploy": "firebase deploy --only hosting,functions",
+    "deploy:frontend": "yarn build:frontend && firebase deploy --only hosting",
+    "backend": "cd packages/backend && yarn express",
+    "frontend": "cd packages/frontend && yarn start"
   }
 }
