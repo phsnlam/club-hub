@@ -8,11 +8,15 @@ const ClubSchema = Joi.object({
 
   name: Joi.string().required(),
 
-  description: Joi.string(),
+  description: Joi.string().required(),
 
-  officers: Joi.array().items(UserSchema),
+  officers: Joi.array().items(UserSchema).min(1),
 
-  meetingTime: Joi.string(),
+  meetingTime: Joi.object({
+    day: Joi.string(),
+    time: Joi.string(),
+    period: Joi.string()
+  }),
 
   gallery: Joi.array().items(Joi.string()),
 
