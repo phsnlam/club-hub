@@ -1,9 +1,11 @@
 const Joi = require('@hapi/joi')
 
+const id = Joi.string()
+.alphanum()
+.required();
+
 const schema = Joi.object({
-  id: Joi.string()
-    .alphanum()
-    .required(),
+  id: id,
 
   firstName: Joi.string(),
 
@@ -20,4 +22,5 @@ const schema = Joi.object({
   clubs: Joi.array().items(Joi.string())
 })
 
-module.exports = schema
+module.exports = schema;
+module.exports.id = id;
