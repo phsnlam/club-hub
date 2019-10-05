@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const UserSchema, {id} = require('./user')
+const UserSchema, {id} = require('./user') 
 
 const ClubSchema = Joi.object({
   id: Joi.string()
@@ -10,7 +10,7 @@ const ClubSchema = Joi.object({
 
   description: Joi.string().required(),
 
-  officers: Joi.array().items(UserSchema.id).min(1),
+  officers: Joi.array().items(id).min(1),
 
   meetingTime: Joi.object({
     day: Joi.string(),
