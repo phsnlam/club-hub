@@ -22,7 +22,11 @@ const ClubSchema = Joi.object({
 
   avatarUrl: Joi.string(),
 
-  bannerUrl: Joi.string()
+  bannerUrl: Joi.string(),
+
+  active: Joi.boolean(),
+  
+  favoriteUsers: Joi.array().items(id)
 })
 
 module.exports = ClubSchema
