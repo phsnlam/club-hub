@@ -24,7 +24,7 @@ const ClubSchema = Joi.object({
 
   bannerUrl: Joi.string(),
 
-  active: Joi.boolean(),
+  active: Joi.boolean().required(),
   
   favoriteUsers: Joi.array().items(id)
 })
