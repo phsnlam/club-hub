@@ -2,9 +2,7 @@ const Joi = require('@hapi/joi')
 const UserSchema, {id} = require('./user') 
 
 const ClubSchema = Joi.object({
-  id: Joi.string()
-    .alphanum()
-    .required(),
+  id: id,
 
   name: Joi.string().required(),
 
