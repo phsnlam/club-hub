@@ -17,9 +17,9 @@ const schema = Joi.object({
 
   avatarUrl: Joi.string(),
 
-  isOfficer: Joi.bool(),
+  role: Joi.array().items(Joi.string()),
 
-  clubs: Joi.array().items(Joi.string())
+  favorite_clubs: Joi.array().items(Joi.string())
 })
 
 module.exports = schema;
