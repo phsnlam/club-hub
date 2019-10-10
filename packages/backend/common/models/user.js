@@ -11,14 +11,16 @@ const schema = Joi.object({
 
   lastName: Joi.string(),
 
-  emal: Joi.string(),
+  email: Joi.string(),
 
   description: Joi.string(),
 
   avatarUrl: Joi.string(),
 
-  role: Joi.array().items(Joi.string()),
+  //stores array of club roles (officer, member...)
+  roles: Joi.array().items(Joi.string()),
 
+  //stores array of club id
   favorite_clubs: Joi.array().items(Joi.string())
 })
 
