@@ -1,24 +1,31 @@
 const Joi = require('@hapi/joi')
-const UserSchema = require('./user')
+const UserSchema, {id} = require('./user') 
 
 const ClubSchema = Joi.object({
-  id: Joi.string()
-    .alphanum()
-    .required(),
+  id: id,
 
   name: Joi.string().required(),
 
-  description: Joi.string(),
+  description: Joi.string().required(),
 
-  officers: Joi.array().items(UserSchema),
+  officers: Joi.array().items(id).min(1),
 
-  meetingTime: Joi.string(),
+  meetingTime: Joi.object({
+    day: Joi.string(),
+    time: Joi.string(),
+    period: Joi.string()
+  }),
 
   gallery: Joi.array().items(Joi.string()),
 
   avatarUrl: Joi.string(),
 
-  bannerUrl: Joi.string()
+  bannerUrl: Joi.string(),
+
+  active: Joi.boolean().required(),
+  
+  //stores array of user ids that favorite club
+  favoriteUsers: Joi.array().items(id)
 })
 
 module.exports = ClubSchema
