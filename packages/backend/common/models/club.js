@@ -1,5 +1,5 @@
 const Joi = require('@hapi/joi')
-const UserSchema, {id} = require('./user') 
+const {id} = require('./user') 
 
 const ClubSchema = Joi.object({
   id: id,
