@@ -17,7 +17,7 @@ async function addClub(data){
             active: data.active,    //three attributes that are required in schema
             description: data.description
         })
-        return newClub;
+        return newClub; //in case wanted to do stuff after
     }
 }
 
@@ -28,7 +28,7 @@ router.post('/', (req, res, next) => { // , async (req..) =>
         res.send('successful')
         return true;
     }).catch((e)=>{
-        console.log('there is an error')
+        console.log('There is an error:')
         console.log(e)
         console.log(e.message)
         res.send(e.message)
