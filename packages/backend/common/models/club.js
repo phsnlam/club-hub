@@ -28,6 +28,4 @@ const ClubSchema = Joi.object({
   favoriteUsers: Joi.array().items(id)
 })
 
-const Club = 
-
 module.exports = ClubSchema
