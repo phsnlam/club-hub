@@ -1,8 +1,8 @@
 const express = require('express')
-const Joi = require('@hapi/joi')
+
 const router = express.Router()
-const admin = require('firebase-admin');
-const { ClubSchema } = require('@clubhub/common/models');
+
+
 const {clubControllers} = require('../../controllers');
 
 const addClub = clubControllers.addClub;
