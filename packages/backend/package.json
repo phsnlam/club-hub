@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "@clubhub/common": "file:./common",
+    "@clubhub/controllers": "file:./common",
     "@hapi/joi": "^16.1.4",
     "cookie-parser": "~1.4.4",
     "debug": "~2.6.9",
