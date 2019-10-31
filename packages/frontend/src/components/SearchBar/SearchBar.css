@@ -1,0 +1,24 @@
+
+input[type="search"] {
+    border: 1px solid white;
+    display: block;
+    float: right;
+    width: 285px;
+    height: 30px;
+    padding-left: 15px;
+    padding-right: 15px;
+    border-radius: 15px;
+    background-image: url("https://img.icons8.com/color/50/000000/search.png");
+    background-repeat: no-repeat;
+    background-position: center right;
+
+    background-size: 20px;
+}
+
+#SearchBar {
+    width: 500px;
+    height: 500px;
+    border: 1px solid black;
+    background-color: grey;
+    
+}
