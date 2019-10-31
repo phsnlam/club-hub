@@ -21,16 +21,16 @@ Make sure below software are installed
 yarn
 ```
 
-- Develop backend
+- Run the backend (Express app)
 
 ```bash
-yarn run backend
+yarn backend
 ```
 
-- Develop frontend
+- Run the frontend (React app)
 
 ```bash
-yarn run frontend
+yarn frontend
 ```
 
 ## Contributing

@@ -1,0 +1,9 @@
+{
+  "name": "@clubhub/components",
+  "description": "React components for Club Hub Website",
+  "version": "0.1.0",
+  "engines": {
+    "node": "10"
+  },
+  "private": true
+}
