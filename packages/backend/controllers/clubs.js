@@ -20,14 +20,14 @@ async function addClub(data){
     }
 }
 
-async function editClub(club_id){
+async function editClub(club_id){ 
+    console.log('id here: ' + club_id)
     const db = admin.firestore();
-    const club = await db.collection('clubs').update({
-        name:  club_id.name.optional,
-        active: club_id.active.optional,
-        description: club_id.active.optional
-    })
-
+    const club = await db.collection('clubs').doc(club_id).update({
+        name: 'newclubhub'
+    });
+    //console.log('id here:' + club_data)
+    return club;
 }
 
 async function getAllClubs(){
@@ -46,3 +46,4 @@ async function getAllClubs(){
 //module.export = addClub;
 module.exports.addClub = addClub;
 module.exports.getAllClubs = getAllClubs;
+module.exports.editClub = editClub;

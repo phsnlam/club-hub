@@ -34,9 +34,16 @@ router.get('/', (req, res, next) => {
     });
 })
 
-router.edit('/', (req, res, next) => {
-    console.log();
-    return true;
+router.put('/:id', (req, res, next) => {
+    editClub(req.params.id).then((result)=> {
+        res.send('successful');
+        return true;
+    }).catch((e)=>{
+        console.log('error here')
+        console.log({'error' : e + e.message});
+        res.send(e.message);
+    });
+    
 })
 
 
