@@ -20,6 +20,16 @@ async function addClub(data){
     }
 }
 
+async function editClub(club_id){
+    const db = admin.firestore();
+    const club = await db.collection('clubs').update({
+        name:  club_id.name.optional,
+        active: club_id.active.optional,
+        description: club_id.active.optional
+    })
+
+}
+
 async function getAllClubs(){
     
     const db = admin.firestore();

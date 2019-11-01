@@ -7,7 +7,7 @@ const {clubControllers} = require('../../controllers');
 
 const addClub = clubControllers.addClub;
 const getAllClub = clubControllers.getAllClubs;
-
+const editClub = clubControllers.editClub;
 
 /* GET users listing. */
 router.post('/', (req, res, next) => { // , async (req..) =>
@@ -32,6 +32,11 @@ router.get('/', (req, res, next) => {
         console.log({'error': e + e.message});
         res.send(e.message);
     });
+})
+
+router.edit('/', (req, res, next) => {
+    console.log();
+    return true;
 })
 
 
