@@ -35,7 +35,7 @@ router.get('/', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-    editClub(req.params.id).then((result)=> {
+    editClub(req.params.id, req.body).then((result)=> {
         res.send('successful');
         return true;
     }).catch((e)=>{

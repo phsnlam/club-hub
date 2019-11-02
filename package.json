@@ -14,5 +14,8 @@
     "deploy:frontend": "yarn build:frontend && firebase deploy --only hosting",
     "backend": "cd packages/backend && yarn express",
     "frontend": "cd packages/frontend && yarn start"
+  },
+  "devDependencies": {
+    "babel-eslint": "^10.0.3"
   }
 }

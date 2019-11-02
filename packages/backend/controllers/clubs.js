@@ -20,13 +20,23 @@ async function addClub(data){
     }
 }
 
-async function editClub(club_id){ 
-    console.log('id here: ' + club_id)
+async function editClub(club_id, data){  //passing through request body and clubid for specific doc.
+    console.log('id here: ' + club_id);
+    console.log({body: data})
     const db = admin.firestore();
+
     const club = await db.collection('clubs').doc(club_id).update({
-        name: 'newclubhub'
-    });
-    //console.log('id here:' + club_data)
+        name : data.name,
+        active: data.active,
+        description: data.description,
+        //avatarURL: data.avatarURL,
+        //bannerURL: data.bannerURL,
+        //officers: data.officers,      //do we need this??
+        //gallery: data.gallery,
+        //meetingTime: data.meetingTime,
+        //favoriteUsers: data.favoriteUsers
+    })
+    console.log(club);
     return club;
 }
 
