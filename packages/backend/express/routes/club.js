@@ -46,6 +46,15 @@ router.put('/:id', (req, res, next) => {
     
 })
 
+router.delete('/:id', (req, res, next)=>{
+    deleteClub(req.params.id). then((result) => {
+        res.send('Club Deleted');
+        return true;
+    }).catch((e)=>{
+        console.log({'error' : e + e.message});
+        res.send(e.message);
+    });
+})
 
 
 module.exports = router
