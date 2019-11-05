@@ -28,34 +28,20 @@ async function editClub(club_id, data){  //passing through request body and club
 
     const getClub = await db.collection('clubs').doc(club_id).get();
 
-    console.log("This is the club info +++++>>>>>", getClub);
-    
-    // for(var i = 0, len = getClub.length; i < len; i++){
-    //     if(getClub[i] !== "undefined"){
-    //         getClub.update({
-    //             club : data.club
-    //         })
-    //     }
-    //     else{
-    //         getClub.add({
-    //             club: data.club
-    //         })
-    //     }
-    // }
-    //console.log(db.collection('clubs').doc(club_id));
+    //console.log("This is the club info +++++>>>>>", getClub);
 
     const club = await db.collection('clubs').doc(club_id).update({
         name : data.name,
-        active: data.active,
+        active: data.active,            //already required, dont need to handle
         description: data.description,
-        //avatarURL: data.avatarURL,
-        bannerURL: undefined ? data.bannerURL : "https://hungs.dev",
-        // officers: data.officers,      //do we need this??
-        // gallery: data.gallery,
-        // meetingTime: data.meetingTime,
-        // favoriteUsers: data.favoriteUsers
+        avatarURL: undefined ? data.avatarURL : 'None',
+        bannerURL: undefined ? data.bannerURL : 'None',
+        officers: undefined ? data.officers: 'None',      //before updating, checks if undefined
+        gallery: undefined ? data.gallery: 'None',        //undefined vals dont work for update
+        meetingTime: undefined ? data.meetingTime: 'None',
+        favoriteUsers: undefined ? data.favoriteUsers: 'None'
     })
-    console.log(club);
+    //console.log(club);
     return club;
 
 }
