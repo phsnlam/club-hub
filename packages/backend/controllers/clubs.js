@@ -21,23 +21,43 @@ async function addClub(data){
 }
 
 async function editClub(club_id, data){  //passing through request body and clubid for specific doc.
+    const {bannerURL = "https:/deaultURL"} = data;
     console.log('id here: ' + club_id);
     console.log({body: data})
     const db = admin.firestore();
+
+    const getClub = await db.collection('clubs').doc(club_id).get();
+
+    console.log("This is the club info +++++>>>>>", getClub);
+    
+    // for(var i = 0, len = getClub.length; i < len; i++){
+    //     if(getClub[i] !== "undefined"){
+    //         getClub.update({
+    //             club : data.club
+    //         })
+    //     }
+    //     else{
+    //         getClub.add({
+    //             club: data.club
+    //         })
+    //     }
+    // }
+    //console.log(db.collection('clubs').doc(club_id));
 
     const club = await db.collection('clubs').doc(club_id).update({
         name : data.name,
         active: data.active,
         description: data.description,
         //avatarURL: data.avatarURL,
-        //bannerURL: data.bannerURL,
-        //officers: data.officers,      //do we need this??
-        //gallery: data.gallery,
-        //meetingTime: data.meetingTime,
-        //favoriteUsers: data.favoriteUsers
+        bannerURL: undefined ? data.bannerURL : "https://hungs.dev",
+        // officers: data.officers,      //do we need this??
+        // gallery: data.gallery,
+        // meetingTime: data.meetingTime,
+        // favoriteUsers: data.favoriteUsers
     })
     console.log(club);
     return club;
+
 }
 
 async function getAllClubs(){
