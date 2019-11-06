@@ -45,6 +45,8 @@ showDropdownMenu(event) {
   render() {
     return (
         <div  className="dropdown">
+          {/* To get this to work with a profile picture, pull link from database
+          and replace the title "Account Options" */}
          <button className="button" onClick={this.showDropdownMenu}>Account Options</button>
 
           { this.state.displayMenu ? (
