@@ -8,6 +8,7 @@ const {clubControllers} = require('../../controllers');
 const addClub = clubControllers.addClub;
 const getAllClub = clubControllers.getAllClubs;
 const editClub = clubControllers.editClub;
+const deleteClub = clubControllers.deleteClub;
 
 /* GET users listing. */
 router.post('/', (req, res, next) => { // , async (req..) =>
@@ -40,7 +41,7 @@ router.put('/:id', (req, res, next) => {
         return true;
     }).catch((e)=>{
         console.log('error here')
-        console.log({'error' : e + e.message});
+        console.log({'error': e + e.message});
         res.send(e.message);
     });
     
@@ -55,6 +56,5 @@ router.delete('/:id', (req, res, next)=>{
         res.send(e.message);
     });
 })
-
 
 module.exports = router
