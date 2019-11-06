@@ -14,5 +14,9 @@
     "deploy:frontend": "yarn build:frontend && firebase deploy --only hosting",
     "backend": "cd packages/backend && yarn express",
     "frontend": "cd packages/frontend && yarn start"
+  },
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "typescript": "^3.7.2"
   }
 }
