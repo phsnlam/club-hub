@@ -5,13 +5,22 @@ div {
 
 div1 {
  padding: 1%;
- margin-left: 35%;
+ margin-left: 30%;
 }
 
 div2 {
   margin-left: auto;
   margin-right: 0;
   padding: 1%;
+}
+
+button {
+  height: 40px;
+  border-radius: 10px;
+}
+
+dropdown {
+  padding-top: 100px;
 }
 
 ul {
