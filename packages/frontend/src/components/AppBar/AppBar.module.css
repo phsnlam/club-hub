@@ -1,3 +1,19 @@
+div {
+  display: flex;
+  flex-direction: row;
+}
+
+div1 {
+ padding: 1%;
+ margin-left: 35%;
+}
+
+div2 {
+  margin-left: auto;
+  margin-right: 0;
+  padding: 1%;
+}
+
 ul {
   list-style-type: none;
   margin: 0;

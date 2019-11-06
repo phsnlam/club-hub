@@ -8,8 +8,8 @@ import { SearchBar } from '@clubhub/components'
 const AppBar = () => {
   return (
     <div className = "navBar">
-      <div><Dropdown/></div>
-      <div><SearchBar/></div>
+      <div1><SearchBar/></div1>
+      <div2><Dropdown/></div2>
     </div>
   )
 }
