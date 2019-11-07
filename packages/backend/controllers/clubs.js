@@ -62,11 +62,7 @@ async function getAllClubs(){
 async function deleteClub(club_id){
     const db = admin.firestore();
     
-    deletedClub = await db.collection('clubs').doc(club_id).delete();
-
-    console.log("removed", club_id);
-    return deletedClub;
-    
+    return await db.collection('clubs').doc(club_id).delete();    
 }
 
 //module.export = addClub;
