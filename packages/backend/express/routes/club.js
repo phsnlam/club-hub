@@ -12,7 +12,7 @@ const getAllClub = clubControllers.getAllClubs;
 /* GET users listing. */
 router.post('/', (req, res, next) => { // , async (req..) =>
     addClub(req.body).then((result)=>{
-        res.send('successful');
+        res.send('Added Club');
         return true;
     }).catch((e)=>{
         console.log('There is an error:')
