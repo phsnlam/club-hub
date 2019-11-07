@@ -26,7 +26,7 @@ router.post('/', (req, res, next) => { // , async (req..) =>
 
 router.get('/', (req, res, next) => {
     getAllClub().then((result)=>{
-        res.send('successful');
+        res.send('Club received');
         return true;
     }).catch((e) =>{
         console.log({'error': e + e.message});
