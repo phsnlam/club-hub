@@ -47,14 +47,16 @@ showDropdownMenu(event) {
         <div  className="dropdown">
           {/* To get this to work with a profile picture, pull link from database
           and replace the title "Account Options" */}
-         <button className="button" onClick={this.showDropdownMenu}>Account Options</button>
+          <button className="button" onClick={this.showDropdownMenu}>
+            Account Options
+          </button>
 
           { this.state.displayMenu ? (
           <ul>
-            <li><Link to="/">Home</Link></li>
-            <li><Link to="/login">Login</Link></li>
-            <li><Link to="/register">Register</Link></li>
-            <li><Link to="/setting">Setting</Link></li>
+            <a href="/"><li>Home</li></a>
+            <a href="/login"><li>Login</li></a>
+            <a href="/register"><li>Register</li></a>
+            <a href="/setting"><li>Setting</li></a>
           </ul>
         ):
         (
