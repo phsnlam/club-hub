@@ -6,10 +6,11 @@ async function addClub(data){
     console.log({body: data})
     let result = ClubSchema.validate(data, { stripUnknown: { objects: true } }) //strip removes unwanted attribute in club
     console.log(result);
+    
+    const db = admin.firestore();
     if (result.error){
         throw Error(result.error.details.messages)
     }else{
-        const db = admin.firestore();
         let newClub =  await db.collection('clubs').add({
             name: data.name,
             active: data.active,    //three attributes that are required in schema
@@ -19,6 +20,19 @@ async function addClub(data){
     }
 }
 
+async function getAllClubs(){
+    
+    const db = admin.firestore();
+    const clubData = await db.collection('clubs').get();
+    let allClubs = []; //init list to store clubData
+    clubData.forEach((club) =>{
+        allClubs.push({...club.data(), id: club.id}); //place id into collection of club data
+    });
+    console.log(allClubs);
+    return allClubs;
+}
+
 
 //module.export = addClub;
 module.exports.addClub = addClub;
+module.exports.getAllClubs = getAllClubs;
