@@ -9,47 +9,15 @@ const getAllClub = clubControllers.getAllClubs;
 const editClub = clubControllers.editClub;
 const deleteClub = clubControllers.deleteClub;
 
-/* GET users listing. */
-router.put("/", (req, res, next) => {
-  // , async (req..) =>
+router.put("/", (req, res) => { //addClub 
   addClub(req.body)
     .then(result => {
-      res.send("successful");
+      res.status(200).send("Club added");
       return true;
     })
     .catch(e => {
-      console.log("There is an error:");
-      console.log(e);
-      console.log(e.message);
-      res.send(e.message);
-    });
-  //res.send('respond with a resource')
-});
-
-router.get("/", (req, res, next) => {
-  getAllClub()
-    .then(result => {
-      res.send("successful");
-      return true;
-    })
-    .catch(e => {
-      console.log({ error: e + e.message });
-      res.send(e.message);
-    });
-});
-
-router.post("/:id", (req, res, next) => {
-  //console.log("REQUEST", req.body.name)
-
-  editClub(req.params.id, req.body)
-    .then(result => {
-      res.send("successful");
-      return true;
-    })
-    .catch(e => {
-      console.log("error here");
       console.log("error:", e, e.message);
-      res.send({
+      res.status(400).send({
         error: {
           message: e.message
         }
@@ -57,16 +25,51 @@ router.post("/:id", (req, res, next) => {
     });
 });
 
-router.delete("/:id", (req, res) => {
-  deleteClub(req.params.id)
+router.get("/", (res) => { //getAllClubs
+  getAllClub()
     .then(result => {
-      res.send("Club Deleted");
+      res.status(200).send("Club received");
       return true;
     })
     .catch(e => {
-      console.log({ error: e + e.message });
-      res.status(400);
-      res.send(e.message);
+      console.log("error:", e, e.message);
+      res.status(400).send({
+        error: {
+          mesage: e.message
+        }
+      });
+    });
+});
+
+router.post("/:id", (req, res) => { //editClub
+  editClub(req.params.id, req.body)
+    .then(result => {
+      res.status(200).send("successful");
+      return true;
+    })
+    .catch(e => {
+      console.log("error:", e , e.message);
+      res.status(400).send({
+        error: {
+          message: e.message
+        }
+      });
+    });
+});
+
+router.delete("/:id", (req, res) => { //deleteClub
+  deleteClub(req.params.id)
+    .then(result => {
+      res.status(200).send("Club Deleted");
+      return true;
+    })
+    .catch(e => {
+      console.log("error:", e , e.message);
+      res.status(400).send({
+        error: {
+          message: e.message
+        }
+      });
     });
 });
 

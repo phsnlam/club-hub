@@ -20,40 +20,27 @@ async function addClub(data) {
 }
 
 async function editClub(club_id, data) {
-  let result = ClubSchema.validate(data, {
+  let result = ClubSchema.validate(data, {  //editClub assumes that frontend will always update a club by sending a request of ALL properties 
     stripUnknown: { objects: true },
-    abortEarly: false
+    abortEarly: false //allows multiple errors to be thrown in error response
   });
   if (result.error) {
-    console.log("validation eror", result.error);
-    throw Error(result.error.details.map(item => item.message).join(","));
-    // console.log('error', result.error.details.map(item => item.message).join(','))
-    // throw Error('temp')
+    console.log("validation error:", result.error);
+    throw Error(result.error.details.map(item => item.message).join(", ")); //joins errors, strips result.error of unwanted clutter
   }
 
   console.log("id here: " + club_id);
-  console.log({ body: data });
+
   const db = admin.firestore();
-
-  //console.log('DATA HERE!:'+ data.name+ "left")
-
-  //console.log("Look im here!: ", await db.collection('clubs').doc(club_id))
 
   club_data = await db
     .collection("clubs")
     .doc(club_id)
     .get()
     .then(async snapshot => {
-      const new_data = snapshot.data();
+      const new_data = snapshot.data(); //snapshot of data in club w/ club_id
       for (const key in new_data) {
         if (data[key] !== undefined) {
-          //   console.log(
-          //     "valid key here!: ",
-          //     key,
-          //     "Key Value Here!: ",
-          //     new_data[key]
-          //   );
-
           new_data[key] = data[key];
         }
       }
@@ -63,31 +50,6 @@ async function editClub(club_id, data) {
         .update(new_data);
       return newClub;
     });
-
-  // for (var property in club_data){
-  //     console.log("THIS IS PROP: ", property)
-  //     if (club_data[property] === null || club_data[property] === undefined){
-  //         delete club_data[property];
-  //     }
-  //     else( await db.collection('clubs').doc(club_id).update({
-  //          property : club_data.property}))
-  // }
-
-  //const club = await db.collection('clubs').doc(club_id).update(club_data)
-
-  // const club = await db.collection('clubs').doc(club_id).update({
-  //     name : data.name ? data.name : getClub.name ? getClub.name : null,
-  //     active: data.active ? data.active: getClub.active ? getClub.active : null,            //already required, dont need to handle
-  //     description: data.description ? data.description: getClub.description ? getClub.description : null,
-  //     avatarURL: data.avatarURL ? data.avatarURL : getClub.avatarURL ? getClub.avatarURL : null,
-  //     bannerURL: data.bannerURL ? data.bannerURL : getClub.bannerURL ? getClub.bannerURL : null,
-  //     officers: data.officers ? data.officers: getClub.officers ? getClub.officers : null,      //before updating, checks if undefined
-  //     gallery: data.gallery ? data.gallery: getClub.gallery ? getClub.gallery : null,        //undefined vals dont work for update, replaces with null
-  //     meetingTime: data.meetingTime ? data.meetingTime: getClub.meetingTime ? getClub.meetingTime : null,
-  //     favoriteUsers: data.favoriteUsers ? data.favoriteUsers: getClub.favoriteUsers ? getClub.favoriteUsers : null
-  // })
-  //console.log(club);
-  return club_data;
 }
 
 async function getAllClubs() {
@@ -102,21 +64,19 @@ async function getAllClubs() {
 }
 
 async function deleteClub(club_id) {
-  const db = admin.firestore();
-
+  const db = admin.firestore()
   const doc = await db
     .collection("clubs")
     .doc(club_id)
     .get();
 
-  if (doc.exists) {
+  if (doc.exists) { //handling error iff ID does not exist..firestore doesnt catch doc not found error
     return await doc.ref.delete();
   } else {
-    throw Error(`Id doesn't exists`);
+    throw Error(`ID does not exist`);
   }
 }
 
-//module.export = addClub;
 module.exports.deleteClub = deleteClub;
 module.exports.addClub = addClub;
 module.exports.getAllClubs = getAllClubs;
