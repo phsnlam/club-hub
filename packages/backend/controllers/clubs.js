@@ -3,12 +3,15 @@ const { ClubSchema } = require("@clubhub/common/models");
 
 async function addClub(data) {
   console.log({ body: data });
-  let result = ClubSchema.validate(data, { stripUnknown: { objects: true } }); //strip removes unwanted attribute in club
+  let result = ClubSchema.validate(data, {
+    stripUnknown: { objects: true },
+    abortEarly: false
+  }); //strip removes unwanted attribute in club
   console.log(result);
 
   const db = admin.firestore();
   if (result.error) {
-    throw Error(result.error.details.messages);
+    throw Error(result.error.details.map(item => item.message).join(", ")); //joins errors, strips result.error of unwanted clutter
   } else {
     let newClub = await db.collection("clubs").add({
       name: data.name,
@@ -20,7 +23,8 @@ async function addClub(data) {
 }
 
 async function editClub(club_id, data) {
-  let result = ClubSchema.validate(data, {  //editClub assumes that frontend will always update a club by sending a request of ALL properties 
+  let result = ClubSchema.validate(data, {
+    //editClub assumes that frontend will always update a club by sending a request of ALL properties
     stripUnknown: { objects: true },
     abortEarly: false //allows multiple errors to be thrown in error response
   });
@@ -64,13 +68,14 @@ async function getAllClubs() {
 }
 
 async function deleteClub(club_id) {
-  const db = admin.firestore()
+  const db = admin.firestore();
   const doc = await db
     .collection("clubs")
     .doc(club_id)
     .get();
 
-  if (doc.exists) { //handling error iff ID does not exist..firestore doesnt catch doc not found error
+  if (doc.exists) {
+    //handling error iff ID does not exist..firestore doesnt catch doc not found error
     return await doc.ref.delete();
   } else {
     throw Error(`ID does not exist`);
