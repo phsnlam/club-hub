@@ -4,7 +4,7 @@ const { ClubSchema } = require("@clubhub/common/models");
 async function addClub(data) {
   console.log({ body: data });
   let result = ClubSchema.validate(data, {
-    stripUnknown: { objects: true },
+    stripUnknown: true,
     abortEarly: false
   }); //strip removes unwanted attribute in club
   console.log(result);
@@ -25,7 +25,7 @@ async function addClub(data) {
 async function editClub(club_id, data) {
   let result = ClubSchema.validate(data, {
     //editClub assumes that frontend will always update a club by sending a request of ALL properties
-    stripUnknown: { objects: true },
+    stripUnknown: true,
     abortEarly: false //allows multiple errors to be thrown in error response
   });
   if (result.error) {
